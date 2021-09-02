@@ -73,5 +73,107 @@ exports.create = (req, res) => {
 
 
     })
+}
+
+//Edit user
+exports.edit = (req, res) => {
+    // res.render('edit-user');
+    pool.getConnection((err, connection) => {
+        if (err) throw err;
+        console.log("Connected as ID" + connection.threadId);
+        connection.query(`select  * from users where  id = ?`, [req.params.id], (err, rows) => {
+            connection.release();
+            if (!err) {
+                res.render('edit-user', { rows });
+            }
+            else {
+                console.log(err);
+            }
+        });
+
+    });
+}
+
+//Update the data
+exports.update = (req, res) => {
+    const { first_name, last_name, email, phone, comments } = req.body;
+    pool.getConnection((err, connection) => {
+        if (err) throw err;
+        console.log("Connected as ID " + connection.threadId);
+        connection.query(`update users set first_name = ?, last_name = ?, email = ?, phone = ?, comments = ? where id = ?`, [first_name, last_name, email, phone, comments, req.params.id], (err, rows) => {
+            connection.release();
+            if (!err) {
+                pool.getConnection((err, connection) => {
+                    if (err) throw err;
+                    console.log("Connected as ID" + connection.threadId);
+                    connection.query(`select  * from users where  id = ?`, [req.params.id], (err, rows) => {
+                        connection.release();
+                        if (!err) {
+                            res.render('edit-user', { rows, alert: `${first_name} has been updated` });
+                        }
+                        else {
+                            console.log(err);
+                        }
+                    });
+
+                });
+            }
+            else {
+                console.log(err);
+            }
+        })
+    })
+
+}
+
+//delete user
+exports.delete = (req, res) => {
+    pool.getConnection((err, connection) => {
+        if (err) throw err;
+        console.log("Connected as ID " + connection.threadId);
+
+        connection.query("delete from users where id = ?", [req.params.id], (err, rows) => {
+            connection.release();
+            if (!err) {
+                pool.getConnection((err, connection) => {
+                    if (err) throw err; // not connected
+                    console.log('connected as ID' + connection.threadId);
+                    connection.query('select * from users', (err, rows) => {
+                        // When done with the connection ,relase it
+                        connection.release();
+                        if (!err) {
+                            res.render('home', { rows, alert: "user have been deleted" });
+                        }
+                        else {
+                            console.log(err);
+                        }
+                        console.log(rows);
+                    });
+                });
+            }
+            else {
+                console.log(err);
+            }
+        });
+    });
+}
+
+// View Users
+exports.viewall = (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if (err) throw err;
+        console.log("Connected as ID " + connection.threadId);
+        connection.query('SELECT * FROM users WHERE id = ?', [req.params.id], (err, rows) => {
+            if (!err) {
+                res.render('view-user', { rows });
+            } else {
+                console.log(err);
+            }
+            console.log('The data from user table: \n', rows);
+        });
+    });
+    // User the connection
+
 
 }
