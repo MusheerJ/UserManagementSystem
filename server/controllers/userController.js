@@ -67,7 +67,7 @@ exports.create = (req, res) => {
             , [first_name, last_name, email, phone, comments], (err, rows) => {
                 connection.release();
                 if (!err) {
-                    res.render('add-user');
+                    res.render('add-user', { alert: `${first_name} has been added` });
                 }
             });
 

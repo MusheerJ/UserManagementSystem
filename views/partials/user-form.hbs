@@ -1,6 +1,6 @@
 <div class="col-6">
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" value="{{this.first_name}}" placeholder="First Name"
+        <input type="text" class="form-control" id="firstName" value="{{this.first_name}}" placeholder="First Name"
             name="first_name">
         <label for="floatingInput">First Name</label>
     </div>
@@ -8,7 +8,7 @@
 
 <div class="col-6">
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" value="{{this.last_name}}" placeholder="Last Name"
+        <input type="text" class="form-control" id="lastName" value="{{this.last_name}}" placeholder="Last Name"
             name="last_name">
         <label for="floatingInput">Last Name</label>
     </div>
@@ -16,7 +16,7 @@
 
 <div class="col-6">
     <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" value="{{this.email}}"
+        <input type="email" class="form-control" id="email" value="{{this.email}}"
             placeholder="example@gmail.com" name="email">
         <label for="floatingInput">Email</label>
     </div>
@@ -24,7 +24,7 @@
 
 <div class="col-6">
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" value="{{this.phone}}" placeholder="Phone"
+        <input type="text" class="form-control" id="phone" value="{{this.phone}}" placeholder="Phone"
             name="phone">
         <label for="floatingInput">Phone</label>
     </div>
@@ -32,7 +32,7 @@
 
 <div class="col-12">
     <div class="form-floating mb-3">
-        <textarea class="form-control" placeholder="Leave a comment here" name="comments" id="floatingTextarea2"
+        <textarea class="form-control"  placeholder="Leave a comment here" name="comments" id="comments"
             style="height: 120px">{{this.comments}}</textarea>
         <label for="floatingTextarea2">About</label>
     </div>
@@ -40,7 +40,7 @@
 
 
 <div class="col-12 d-grid">
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit" id="submit" >Submit</button>
 </div>
 
 {{!-- <div class="col-12">

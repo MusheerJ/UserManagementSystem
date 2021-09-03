@@ -12,10 +12,68 @@
 </div>
 {{/if}}
 
+<div class="error" id="errorContainer">
+
+</div>
+
 {{#each rows}}
-<form class="row g-3 needs-validation" method="POST" action="/edituser/{{this.id}}" novalidate>
+<form class="row g-3 needs-validation" method="POST" id="addUserForm" action="/edituser/{{this.id}}" novalidate>
 
     {{>user-form}}
 
 </form>
 {{/each}}
+
+<script>
+    let addUserForm = document.getElementById('addUserForm');
+    let first_name = document.getElementById('firstName');
+    let last_name = document.getElementById('lastName');
+    let email = document.getElementById('email');
+    let phone = document.getElementById('phone');
+    let comments = document.getElementById('comments');
+    let submitBtn = document.getElementById('submit')
+    let errorContainer = document.getElementById('errorContainer');
+
+    submitBtn.addEventListener("click", addUser);
+
+    function addUser() {
+        let startHtml = `<div class="alert alert-warning alert-dismissible fade show" role="alert">`;
+        let endHtml = `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>`;
+        if (first_name.value == '') {
+            addUserForm.setAttribute('method', 'dialog');
+            errorContainer.innerHTML = `${startHtml}First Name cannot be empty !${endHtml}`;
+            console.log('first_name cant be empty');
+            return;
+        }
+        if (last_name.value == '') {
+            addUserForm.setAttribute('method', 'dialog');
+            errorContainer.innerHTML = `${startHtml}Last Name cannot be empty !${endHtml}`;
+            console.log('first_name cant be empty');
+            return;
+        }
+
+        if (email.value == '') {
+            addUserForm.setAttribute('method', 'dialog');
+            errorContainer.innerHTML = `${startHtml}Email Name cannot be empty !${endHtml}`;
+            console.log('first_name cant be empty');
+            return;
+        }
+
+        if (phone.value == '') {
+            addUserForm.setAttribute('method', 'dialog');
+            errorContainer.innerHTML = `${startHtml}Phone Name cannot be empty !${endHtml}`;
+            console.log('first_name cant be empty');
+            return;
+        }
+        if (comments.value == '') {
+            addUserForm.setAttribute('method', 'dialog');
+            errorContainer.innerHTML = `${startHtml}About Name cannot be empty !${endHtml}`;
+            console.log('first_name cant be empty');
+            return;
+        }
+
+        addUserForm.setAttribute('method', 'POST');
+
+    }
+</script>
