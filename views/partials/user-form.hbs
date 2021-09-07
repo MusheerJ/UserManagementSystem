@@ -16,23 +16,22 @@
 
 <div class="col-6">
     <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="email" value="{{this.email}}"
-            placeholder="example@gmail.com" name="email">
+        <input type="email" class="form-control" id="email" value="{{this.email}}" placeholder="example@gmail.com"
+            name="email">
         <label for="floatingInput">Email</label>
     </div>
 </div>
 
 <div class="col-6">
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="phone" value="{{this.phone}}" placeholder="Phone"
-            name="phone">
+        <input type="text" class="form-control" id="phone" value="{{this.phone}}" placeholder="Phone" name="phone">
         <label for="floatingInput">Phone</label>
     </div>
 </div>
 
 <div class="col-12">
     <div class="form-floating mb-3">
-        <textarea class="form-control"  placeholder="Leave a comment here" name="comments" id="comments"
+        <textarea class="form-control" placeholder="Leave a comment here" name="comments" id="comments"
             style="height: 120px">{{this.comments}}</textarea>
         <label for="floatingTextarea2">About</label>
     </div>
@@ -40,9 +39,28 @@
 
 
 <div class="col-12 d-grid">
-    <button class="btn btn-primary" type="submit" id="submit" >Submit</button>
+    <button class="btn btn-dark" type="submit" id="submit">Submit</button>
 </div>
 
 {{!-- <div class="col-12">
     <button class="btn btn-primary" id="submit" type="button">Add User</button>
 </div> --}}
+
+<script>
+    document.body.style = 'background: #343a40';
+    let mode = 'dark';
+    let modeSwitchBtn = document.getElementById('switchModeBtn');
+    let submit = document.getElementById('submit');
+    modeSwitchBtn.addEventListener("click", () => {
+        if (mode === 'dark') {
+            document.body.style = 'background: white';
+            submit.setAttribute('class', 'btn btn-primary')
+            mode = 'light'
+        }
+        else {
+            document.body.style = 'background: #343a40';
+            mode = 'dark';
+            submit.setAttribute('class', 'btn btn-dark')
+        }
+    });
+</script>

@@ -9,12 +9,13 @@
     {{#each rows}}
     <div class="row mb-5">
         <div class="col text-center">
-            <h3>{{this.first_name}} {{this.last_name}}</h3>
+            <h3 id="userfirstlast" style="color: white;">{{this.first_name}} {{this.last_name}}</h3>
         </div>
     </div>
+
     <div class="row">
         <div class="col">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-dark" id='viewUserTable'>
                 <thead>
                     <tr>
                         <th scope="col">First Name</th>
@@ -33,16 +34,54 @@
                 </tbody>
             </table>
         </div>
-        <div class="row">
+        <div class="row" id='userComments' style="color: white;">
             <div class="col">
                 <b>About</b>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                {{this.comments}}
+            <div class="row">
+                <div class="col">
+                    {{this.comments}}
+                </div>
             </div>
         </div>
+
     </div>
     {{/each}}
 </div>
+
+<script>
+    let mode = 'dark';
+    document.body.style = 'background: #343a40';
+    let navBar = document.getElementById('navBar');
+    let switchModeBtnLabel = document.getElementById('labelForMode');
+    let searchBtn = document.getElementById('searchBtn');
+    let modeSwitchBtn = document.getElementById('switchModeBtn');
+    let userfirstlast = document.getElementById('userfirstlast');
+    let viewUserTable = document.getElementById('viewUserTable');
+    let userComments = document.getElementById('userComments');
+
+    modeSwitchBtn.addEventListener('click', () => {
+        if (mode === 'dark') {
+            document.body.style = 'background: white'
+            navBar.setAttribute('class', 'navbar navbar-expand-lg navbar-light bg-light');
+            searchBtn.setAttribute('class', 'btn btn-outline-dark')
+            switchModeBtnLabel.setAttribute('style', "color: black")
+            switchModeBtnLabel.innerHTML = "Enable Dark Mode";
+            userfirstlast.setAttribute('style', "color: black;")
+            viewUserTable.setAttribute('class', 'table table-bordered table-light')
+            userComments.setAttribute('style', 'color:black');
+            mode = 'light';
+        }
+        else {
+            document.body.style = 'background:#343a40 ';
+            navBar.setAttribute('class', 'navbar navbar-expand-lg navbar-dark bg-dark');
+            searchBtn.setAttribute('class', 'btn btn-outline-light')
+            switchModeBtnLabel.setAttribute('style', "color: white")
+            switchModeBtnLabel.innerHTML = "Enable Light Mode";
+            userfirstlast.setAttribute('style', "color: white;")
+            viewUserTable.setAttribute('class', 'table table-bordered table-dark')
+            userComments.setAttribute('style', 'color:white');
+            mode = 'dark';
+        }
+    });
+</script>
