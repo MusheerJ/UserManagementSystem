@@ -67,9 +67,9 @@
     function toggleMode() {
         if (mode === 'dark') {
             document.body.style = 'background: white';
-            navBar.setAttribute('class', 'navbar navbar-expand-lg navbar-light bg-light');
-            searchBtn.setAttribute('class', 'btn btn-outline-dark')
-            switchModeBtnLabel.setAttribute('style', "color: black")
+            navBar.setAttribute('class', 'navbar navbar-expand-lg navbar-dark bg-primary');
+            searchBtn.setAttribute('class', 'btn btn-outline-light')
+            switchModeBtnLabel.setAttribute('style', "color: white")
             switchModeBtnLabel.innerHTML = "Enable Dark Mode";
             userTable.setAttribute('class', 'table table-hover table-light table-bordered');
             tableHead.setAttribute('style', "color: black")
@@ -81,7 +81,7 @@
             navBar.setAttribute('class', 'navbar navbar-expand-lg navbar-dark bg-dark');
             searchBtn.setAttribute('class', 'btn btn-outline-light')
             switchModeBtnLabel.setAttribute('style', "color: white")
-            switchModeBtnLabel.innerHTML = "Enable light Mode";
+            switchModeBtnLabel.innerHTML = "Disable Dark Mode";
             userTable.setAttribute('class', 'table table-hover table-dark table-bordered');
             tableHead.setAttribute('style', "color: white")
             addUserBtn.setAttribute('class', 'btn btn-dark align-self-center')

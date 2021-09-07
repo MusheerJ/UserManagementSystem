@@ -49,16 +49,28 @@
 <script>
     document.body.style = 'background: #343a40';
     let mode = 'dark';
+    let navBar = document.getElementById('navBar');
+    let searchBtn = document.getElementById('searchBtn');
     let modeSwitchBtn = document.getElementById('switchModeBtn');
+    let switchModeBtnLabel = document.getElementById('labelForMode');
     let submit = document.getElementById('submit');
     modeSwitchBtn.addEventListener("click", () => {
         if (mode === 'dark') {
             document.body.style = 'background: white';
+            navBar.setAttribute('class', 'navbar navbar-expand-lg navbar-dark bg-primary');
+            searchBtn.setAttribute('class', 'btn btn-outline-light')
+            switchModeBtnLabel.setAttribute('style', "color: white")
+            switchModeBtnLabel.innerHTML = "Enable Dark Mode";
+
             submit.setAttribute('class', 'btn btn-primary')
             mode = 'light'
         }
         else {
             document.body.style = 'background: #343a40';
+            navBar.setAttribute('class', 'navbar navbar-expand-lg navbar-dark bg-dark');
+            searchBtn.setAttribute('class', 'btn btn-outline-light')
+            switchModeBtnLabel.setAttribute('style', "color: white")
+            switchModeBtnLabel.innerHTML = "Disable Dark Mode";
             mode = 'dark';
             submit.setAttribute('class', 'btn btn-dark')
         }
